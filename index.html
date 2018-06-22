@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS综合练习</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul,ol{
+			list-style: none;
+		}
+		a{
+			text-decoration: none;
+		}
+
+		/* 时间 */
+		.time{
+			text-align: center;
+			margin-top: 20px;
+			margin-left: -100px;
+		}
+
+		/* 选项卡 */
+		.body{
+			width: 400px;
+			margin: 30px 170px;
+		}
+		.body .tabs{
+			width: 400px;
+			height: 50px;
+		}
+		.body .tabs li{
+			float: left;
+			width: 100px;
+			height: 30px;
+			text-align: center;
+			line-height: 30px;
+			border: 1px #DBDBDB solid;
+			background: #DDD;
+			cursor: pointer;
+		}
+		.body .tabs .active{
+			background: #FFF;
+			border-bottom: none;
+			height: 29px;
+		}
+		.body .contents{
+			width: 800px;
+			border: 1px solid #DBDBDB;
+			margin-top: -20px;
+			padding: 20px;
+		}
+		.body .contents .none{
+			display: none;
+		}
+		.body .contents .show{
+			display: block;
+		}
+
+		/* 无缝滚动 */
+		.body .contents .boxW .img1{
+			vertical-align: middle;
+			width: 400px;
+			height: 400px;
+		}
+		.body .contents .boxW{
+			height: 400px;
+			width: 800px;
+			position: relative;
+			overflow: hidden;
+		}
+		.body .contents .boxW .imgs {
+			position: absolute;
+			top: 0;
+			left: -1364px;
+			font-size: 0;
+			width: 3200px;
+		}
+		button{
+			margin-top: 20px;
+		}
+
+		/* 轮播图 */
+		.body .contents .lunbo .img2{
+			display: block;
+			width: 600px;
+			height: 400px;
+		}
+		.body .contents .lunbo{
+			margin: 0 auto;
+			width: 600px;
+			height: 400px;
+			position: relative;
+			overflow: hidden;
+		}
+		.body .contents .lunbo .tupian{
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 3200px;
+			height: 400px;
+		}
+		.body .contents .lunbo .tupian li{
+			float: left;
+		}
+		.body .contents .lunbo .btns{
+			position: absolute;
+			left: 0;
+			bottom: 10px;
+			width: 100%;
+			text-align: center;
+		}
+		.body .contents .lunbo .btns li{
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			background: #FFF;
+			display: inline-block;
+			cursor: pointer;
+			margin: 0 5px;
+		}
+		.body .contents .lunbo .btns li.active{
+			background: orange;
+		}
+
+		.body .contents .lunbo a {
+			position: absolute;
+			top: 200px;
+			width: 30px;
+			height: 40px;
+			font-size: 24px;
+			background: #222;
+			color: #fff;
+			text-align: center;
+			line-height: 40px;
+		}
+		.body .contents .lunbo .prev{
+			left: 0;
+			border-radius: 0 4px 4px 0;
+		}
+		.body .contents .lunbo .next{
+			right: 0;
+			border-radius: 4px 0 0 4px;
+		}
+
+		/* 抽屉 */
+		.body .contents .boxS{
+			height: 400px;
+			width: 780px;
+			position: relative;
+			overflow: hidden;
+		}
+		.body .contents .boxS .boxC{
+			width: 600px;
+			height: 400px;
+			position: absolute;
+			top: 0;
+			transition: 2s linear;
+		}
+		.body .contents .boxS .jt{
+			left: 0;
+		}
+		.body .contents .boxS .sf{
+			left: 600px;
+		}
+		.body .contents .boxS .zf{
+			left: 660px;
+		}
+		.body .contents .boxS .qt{
+			left: 720px;
+		}
+		.body .contents .boxS .boxC .title{
+			height: 400px;
+			width: 25px;
+			float: left;
+			color: #FFF;
+			font-size: 24px;
+			text-align: center;
+			padding: 150px 20px 0;
+			cursor: pointer;
+		}
+		.body .contents .boxS .jt .title{
+			background: #00007F;
+		}
+		.body .contents .boxS .sf .title{
+			background: #EE8800;
+		}
+		.body .contents .boxS .zf .title{
+			background: #7F7F00;
+		}
+		.body .contents .boxS .qt .title{
+			background: #2361AD;
+		}
+		.body .contents .boxS .content{
+			width: 520px;
+			height: 400px;
+			float: left;
+			background: #CCC;
+		}
+		.body .contents .boxS .boxC .content .img3{
+			float: left;
+			height: 500px;
+		}
+	</style>
+</head>
+<body>
+	<div class="time"></div>
+	<div class="body">
+		<ul class="tabs">
+			<li class="active">无缝滚动</li>
+			<li>轮播图</li>
+			<li>抽屉</li>
+		</ul>
+		<div class="contents">
+			<div class="show none">
+				<div class="boxW">
+					<div class="imgs">
+						<img src="images/image1.jpg" alt="" class="img1">
+						<img src="images/image2.jpg" alt="" class="img1">
+						<img src="images/image3.jpg" alt="" class="img1">
+						<img src="images/image4.jpg" alt="" class="img1">
+						<img src="images/image1.jpg" alt="" class="img1">
+						<img src="images/image2.jpg" alt="" class="img1">
+						<img src="images/image3.jpg" alt="" class="img1">
+						<img src="images/image4.jpg" alt="" class="img1">
+					</div>
+				</div>
+				<button>向左滚动</button>
+				<button>向右滚动</button>
+			</div>
+			<div class="none">
+				<div class="lunbo">
+					<ul class="tupian">
+						<li class="l2"><img src="images/image1.jpg" alt="1" class="img2"></li>
+						<li class="l2"><img src="images/image2.jpg" alt="2" class="img2"></li>
+						<li class="l2"><img src="images/image3.jpg" alt="3" class="img2"></li>
+						<li class="l2"><img src="images/image4.jpg" alt="4" class="img2"></li>
+					</ul>
+					<ol class="btns"></ol>
+					<a href="javascript:;" class="prev">&lt;</a>
+					<a href="javascript:;" class="next">&gt;</a>
+				</div>
+			</div>
+			<div class="none">
+				<div class="boxS">
+					<div class="boxC jt">
+						<div class="title">萌宠1</div>
+						<div class="content"><img src="images/image1.jpg" alt="1" class="img3"></div>
+					</div>
+					<div class="boxC sf">
+						<div class="title">萌宠2</div>
+						<div class="content"><img src="images/image2.jpg" alt="2" class="img3"></div>
+					</div>
+					<div class="boxC zf">
+						<div class="title">萌宠3</div>
+						<div class="content"><img src="images/image3.jpg" alt="3" class="img3"></div>
+					</div>
+					<div class="boxC qt">
+						<div class="title">萌宠4</div>
+						<div class="content"><img src="images/image4.jpg" alt="4" class="img3"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="libs/jquery.min.js"></script>
+	<script>
+		//时间
+		var t=null;
+		var time=document.getElementsByClassName('time')[0];
+		var w=['日','一','二','三','四','五','六'];
+		function c(n){
+			return n<10?'0'+n:n;
+		}
+		function fun3(){
+			var date=new Date();
+			var y= date.getFullYear();
+			var m= date.getMonth()+1;
+			var d= date.getDate();
+			var h=c(date.getHours());
+			var i=c(date.getMinutes());
+			var s=c(date.getSeconds());
+			var da=date.getDay();
+			time.innerHTML=y+'年'+m+'月'+d+'日，'+h+':'+i+':'+s+'，星期'+w[da];
+		}
+		fun3();
+		t=setInterval(fun3,1000);
+
+
+		//选项卡
+		var tabs=document.getElementsByClassName('tabs')[0];
+		var lis=tabs.getElementsByTagName('li');
+		var contents=document.getElementsByClassName('contents')[0];
+		var divs=contents.getElementsByClassName('none');
+		for(var j=0;j<lis.length;j++){
+			lis[j].index=j;
+			lis[j].onclick=function(){
+				for(var j=0;j<lis.length;j++){
+					lis[j].className='';
+					divs[j].className='none';
+				}
+				this.className='active';
+				divs[this.index].className='none show';
+			}
+		}
+
+
+		//无缝滚动
+		var W=null;
+		var dir=0;
+		var speed=10;
+		var boxW=document.getElementsByClassName('boxW')[0];
+		var imgs=document.getElementsByClassName('imgs')[0];
+		var btn1=document.getElementsByTagName('button')[0];
+		var btn2=document.getElementsByTagName('button')[1];
+		var boxWWidth=boxW.offsetWidth;
+		var imgsWidth=imgs.offsetWidth;
+		imgs.style.width=imgsWidth*2+'px';
+		imgs.innerHTML+=imgs.innerHTML;
+		function move(){
+			var imgsLeft=imgs.offsetLeft;
+			if(dir){
+				if(imgsLeft>=-(imgsWidth-boxWWidth)){
+				imgs.style.left=-(imgsWidth*2-boxWWidth)+'px';
+				}else{
+				imgs.style.left=++imgsLeft+'px';
+				}
+			}else{
+				if(imgsLeft==-imgsWidth){
+					imgs.style.left='0px';
+				}else{
+					imgs.style.left=--imgsLeft+'px';
+				}
+			}
+		}
+		imgs.onmouseover=function(){
+			clearInterval(W);
+		}
+		imgs.onmouseout=function(){
+			W=setInterval(move,speed);
+		}
+		imgs.onmouseout();
+		btn1.onclick=function(){
+			dir=0;
+		}
+		btn2.onclick=function(){
+			dir=1;
+		}
+
+
+		//轮播图
+		var L=null;
+		var sd=1000;
+		var index=0;
+		var lunbo=document.getElementsByClassName('lunbo')[0];
+		var tupian=document.getElementsByClassName('tupian')[0];
+		var ls=tupian.getElementsByClassName('l2');
+		var tu=tupian.getElementsByClassName('img2')[0];
+		var prev=document.getElementsByClassName('prev')[0];
+		var next=document.getElementsByClassName('next')[0];
+		var tupianL=ls.length;
+		var btn=document.getElementsByClassName('btns')[0];
+		for(var l=0;l<tupianL;l++){
+			var li=document.createElement('li');
+			btn.appendChild(li);
+		}
+		var btns=btn.getElementsByTagName('li');
+		btns[index].className='active';
+		function switchImgs(){
+			if(index>tupianL-1){
+				index=0;
+			}
+			if(index<0){
+				index=tupianL-1;
+			}
+			tupian.style.left=-tu.offsetWidth*index+'px';
+		}
+		function switchBtns(){
+			for(var l=0;l<btns.length;l++){
+				btns[l].className='';
+			}
+			btns[index].className='active';
+		}
+		for(var l=0;l<btns.length;l++){
+			btns[l].idx=l;
+			btns[l].onclick=function(){
+				index=this.idx;
+				switchImgs();
+				switchBtns();
+			}
+		}
+		prev.onclick=function(){
+			index--;
+			switchImgs();
+			switchBtns();
+		}
+		next.onclick=function(){
+			index++;
+			switchImgs();
+			switchBtns();
+		}
+		lunbo.onmouseover=function(){
+			clearInterval(L);
+		}
+		lunbo.onmouseout=function(){
+			L=setInterval(next.onclick,sd);
+		}
+		lunbo.onmouseout();
+
+		//抽屉
+		var boxC=$('.boxC');
+		var title=$('.title');
+		var k=title.innerWidth();
+		var i=$('.content').innerWidth();
+		title.click(function() {
+			var n=$(this).parent().index();
+			boxC.each(function(C){
+				if(C<=n){
+					$(this).css('left',C*k);
+				}else{
+					$(this).css('left',C*k+i);
+				}
+			});
+		});
+	</script>
+</body>
+</html>
